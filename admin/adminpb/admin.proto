@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package admin;
+
+option go_package = "github.com/xiaoxiaodek/kafkaflow-go/admin/adminpb";
+
+message PauseConsumerByName {
+  string consumer_name = 1;
+  repeated string topics = 2;
+}
+
+message ResumeConsumerByName {
+  string consumer_name = 1;
+  repeated string topics = 2;
+}
+
+message StartConsumerByName {
+  string consumer_name = 1;
+}
+
+message StopConsumerByName {
+  string consumer_name = 1;
+}
+
+message RestartConsumerByName {
+  string consumer_name = 1;
+}
+
+message ResetConsumerOffset {
+  string consumer_name = 1;
+  repeated string topics = 2;
+}
+
+message RewindConsumerOffsetToDateTime {
+  string consumer_name = 1;
+  repeated string topics = 2;
+  int64 timestamp = 3;
+}
+
+message ChangeConsumerWorkersCount {
+  string consumer_name = 1;
+  int32 workers_count = 2;
+}
+
+message PauseConsumersByGroup {
+  string group_id = 1;
+  repeated string topics = 2;
+}
+
+message ResumeConsumersByGroup {
+  string group_id = 1;
+  repeated string topics = 2;
+}
+
+message AdminCommand {
+  oneof command {
+    PauseConsumerByName pause_consumer_by_name = 1;
+    ResumeConsumerByName resume_consumer_by_name = 2;
+    StartConsumerByName start_consumer_by_name = 3;
+    StopConsumerByName stop_consumer_by_name = 4;
+    RestartConsumerByName restart_consumer_by_name = 5;
+    ResetConsumerOffset reset_consumer_offset = 6;
+    RewindConsumerOffsetToDateTime rewind_consumer_offset_to_date_time = 7;
+    ChangeConsumerWorkersCount change_consumer_workers_count = 8;
+    PauseConsumersByGroup pause_consumers_by_group = 9;
+    ResumeConsumersByGroup resume_consumers_by_group = 10;
+  }
+}
