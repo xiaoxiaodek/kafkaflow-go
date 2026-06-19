@@ -1,1 +1,3 @@
 dashboard_test
+# Compiled binaries
+*.test
